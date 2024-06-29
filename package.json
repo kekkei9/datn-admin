@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "resolutions": {
+    "wrap-ansi": "7.0.0",
+    "string-width": "4.1.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,11 +16,13 @@
   "dependencies": {
     "antd": "^5.17.4",
     "apexcharts": "^3.49.1",
+    "axios": "^1.7.2",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "styled-components": "^6.1.11",
+    "swr": "^2.2.5",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
@@ -27,6 +33,7 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "tailwindcss": "^3.4.4",
     "vite": "^5.2.0"
   }
 }

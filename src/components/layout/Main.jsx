@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
+import { Affix, Drawer, Layout } from "antd";
+import { useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import { Layout, Drawer, Affix } from "antd";
-import Sidenav from "./Sidenav";
 import Header from "./Header";
-import Footer from "./Footer";
+import Sidenav from "./Sidenav";
 
 const { Header: AntHeader, Content, Sider } = Layout;
 
 function Main() {
   const [visible, setVisible] = useState(false);
-  const [placement, setPlacement] = useState("right");
   const [sidenavColor, setSidenavColor] = useState("#1890ff");
   const [sidenavType, setSidenavType] = useState("transparent");
   const [fixed, setFixed] = useState(false);
@@ -22,14 +20,6 @@ function Main() {
   let { pathname } = useLocation();
   pathname = pathname.replace("/", "");
 
-  useEffect(() => {
-    if (pathname === "rtl") {
-      setPlacement("left");
-    } else {
-      setPlacement("right");
-    }
-  }, [pathname]);
-
   return (
     <Layout
       className={`layout-dashboard ${
@@ -38,11 +28,11 @@ function Main() {
     >
       <Drawer
         title={false}
-        placement={placement === "right" ? "left" : "right"}
+        placement={"left"}
         closable={false}
         onClose={() => setVisible(false)}
         visible={visible}
-        key={placement === "right" ? "left" : "right"}
+        key={"left"}
         width={250}
         className={`drawer-sidebar ${
           pathname === "rtl" ? "drawer-sidebar-rtl" : ""
@@ -111,7 +101,6 @@ function Main() {
         <Content className="content-ant">
           <Outlet />
         </Content>
-        <Footer />
       </Layout>
     </Layout>
   );
