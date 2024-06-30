@@ -1,48 +1,8 @@
-import {
-  Row,
-  Col,
-  Card,
-  Radio,
-  Table,
-  Upload,
-  message,
-  Progress,
-  Button,
-  Avatar,
-  Typography,
-} from "antd";
+import { Card, Col, Row, Table } from "antd";
 
-import { ToTopOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import useSWR from "swr";
 
 // Images
-import ava1 from "../assets/images/logo-shopify.svg";
-import ava2 from "../assets/images/logo-atlassian.svg";
-import ava3 from "../assets/images/logo-slack.svg";
-import ava5 from "../assets/images/logo-jira.svg";
-import ava6 from "../assets/images/logo-invision.svg";
-import pencil from "../assets/images/pencil.svg";
-
-const { Title } = Typography;
-
-const formProps = {
-  name: "file",
-  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
-  headers: {
-    authorization: "authorization-text",
-  },
-  onChange(info) {
-    if (info.file.status !== "uploading") {
-      console.log(info.file, info.fileList);
-    }
-    if (info.file.status === "done") {
-      message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === "error") {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
 
 const userColumns = [
   {
@@ -75,253 +35,70 @@ const userColumns = [
 ];
 
 // project table start
-const project = [
+const prescriptionsColumns = [
   {
-    title: "COMPANIES",
-    dataIndex: "name",
-    width: "32%",
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
   },
   {
-    title: "BUDGET",
-    dataIndex: "age",
+    title: "MEDICINES",
+    key: "medicines",
+    render: (e) => (
+      <div>
+        {e.data.medicines.map(({ name, dosage }, index) => (
+          <div key={index}>
+            Name: {name}, Dosage: {dosage}
+          </div>
+        ))}
+      </div>
+    ),
   },
   {
-    title: "STATUS",
-    dataIndex: "address",
-  },
-  {
-    title: "COMPLETION",
-    dataIndex: "completion",
+    title: "IMAGES",
+    key: "images",
+    render: (e) => (
+      <div>
+        {e.images?.map((url, index) => (
+          <img key={index} src={url} width={40} height={40} />
+        ))}
+      </div>
+    ),
   },
 ];
-const dataproject = [
-  {
-    key: "1",
 
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava1} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Spotify Version</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$14,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">working</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={30} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
+const reportsColumns = [
+  {
+    title: "ID",
+    dataIndex: "id",
+    key: "id",
+    align: "center",
   },
-
   {
-    key: "2",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava2} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Progress Track</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$3,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">working</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={10} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
+    title: "REASON",
+    dataIndex: "reason",
+    key: "reason",
   },
-
   {
-    key: "3",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava3} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}> Jira Platform Errors</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">Not Set</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">done</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={100} size="small" format={() => "done"} />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
+    title: "REPORTED BY",
+    key: "reportedBy",
+    render: (e) => e.createdBy.firstName,
+    align: "center",
   },
-
   {
-    key: "4",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava5} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}> Launch new Mobile App</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$20,600</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">canceled</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress
-            percent={50}
-            size="small"
-            status="exception"
-            format={() => "50%"}
-          />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "5",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava5} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Web Dev</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$4,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">working</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={80} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
-  },
-
-  {
-    key: "6",
-    name: (
-      <>
-        <Avatar.Group>
-          <Avatar className="shape-avatar" src={ava6} size={25} alt="" />
-          <div className="avatar-info">
-            <Title level={5}>Redesign Online Store</Title>
-          </div>
-        </Avatar.Group>
-      </>
-    ),
-    age: (
-      <>
-        <div className="semibold">$2,000</div>
-      </>
-    ),
-    address: (
-      <>
-        <div className="text-sm">canceled</div>
-      </>
-    ),
-    completion: (
-      <>
-        <div className="ant-progress-project">
-          <Progress percent={0} size="small" />
-          <span>
-            <Link to="/">
-              <img src={pencil} alt="" />
-            </Link>
-          </span>
-        </div>
-      </>
-    ),
+    title: "REPORTED TO",
+    key: "reportedTo",
+    render: (e) => e.belongTo.firstName,
+    align: "center",
   },
 ];
 
 function Tables() {
   const { data: usersResponse } = useSWR("/users");
 
-  const onChange = (e) => console.log(`radio checked:${e.target.value}`);
+  const { data: prescriptionsResponse } = useSWR("/prescriptions");
+
+  const { data: reportssResponse } = useSWR("/reports");
 
   return (
     <>
@@ -345,35 +122,28 @@ function Tables() {
             <Card
               bordered={false}
               className="criclebox tablespace mb-24"
-              title="Projects Table"
-              extra={
-                <>
-                  <Radio.Group onChange={onChange} defaultValue="all">
-                    <Radio.Button value="all">All</Radio.Button>
-                    <Radio.Button value="online">ONLINE</Radio.Button>
-                    <Radio.Button value="store">STORES</Radio.Button>
-                  </Radio.Group>
-                </>
-              }
+              title="Prescriptions Table"
             >
               <div className="table-responsive">
                 <Table
-                  columns={project}
-                  dataSource={dataproject}
-                  pagination={false}
+                  columns={prescriptionsColumns}
+                  dataSource={prescriptionsResponse}
                   className="ant-border-space"
                 />
               </div>
-              <div className="uploadfile pb-15 shadow-none">
-                <Upload {...formProps}>
-                  <Button
-                    type="dashed"
-                    className="ant-full-box"
-                    icon={<ToTopOutlined />}
-                  >
-                    Click to Upload
-                  </Button>
-                </Upload>
+            </Card>
+
+            <Card
+              bordered={false}
+              className="criclebox tablespace mb-24"
+              title="Reports Table"
+            >
+              <div className="table-responsive">
+                <Table
+                  columns={reportsColumns}
+                  dataSource={reportssResponse}
+                  className="ant-border-space"
+                />
               </div>
             </Card>
           </Col>

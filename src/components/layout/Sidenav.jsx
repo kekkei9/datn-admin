@@ -95,13 +95,8 @@ function Sidenav({ color }) {
 
   return (
     <>
-      <div className="brand">
-        <img src={logo} alt="" />
-        <span>Muse Dashboard</span>
-      </div>
-      <hr />
       <Menu theme="light" mode="inline">
-        <Menu.Item key="1">
+        {/* <Menu.Item key="1">
           <NavLink to="/dashboard">
             <span
               className="icon"
@@ -113,7 +108,7 @@ function Sidenav({ color }) {
             </span>
             <span className="label">Dashboard</span>
           </NavLink>
-        </Menu.Item>
+        </Menu.Item> */}
         <Menu.Item key="2">
           <NavLink to="/tables">
             <span

@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     if (!userInfo) {
       navigate("/sign-in");
     } else {
-      navigate("/dashboard");
+      navigate("/tables");
     }
   }, [userInfo, navigate]);
 
