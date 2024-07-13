@@ -90,7 +90,7 @@ const DoctorRequestTable = () => {
     <Card
       bordered={false}
       className="criclebox tablespace mb-24"
-      title="Users Table"
+      title="Doctor Requests Table"
     >
       <div className="table-responsive">
         <Table
