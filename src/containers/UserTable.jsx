@@ -12,15 +12,14 @@ const userColumns = [
     align: "right",
   },
   {
-    title: "FIRST NAME",
-    dataIndex: "firstName",
-    key: "firstName",
-  },
-
-  {
     title: "LAST NAME",
     key: "lastName",
     dataIndex: "lastName",
+  },
+  {
+    title: "FIRST NAME",
+    dataIndex: "firstName",
+    key: "firstName",
   },
   {
     title: "NUMBER OF REPORTS",
