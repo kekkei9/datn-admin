@@ -110,7 +110,7 @@ function Sidenav({ color }) {
           </NavLink>
         </Menu.Item> */}
         <Menu.Item key="2">
-          <NavLink to="/tables">
+          <NavLink to="/datn-admin/tables">
             <span
               className="icon"
               style={{
@@ -126,7 +126,7 @@ function Sidenav({ color }) {
           Account Pages
         </Menu.Item>
         <Menu.Item key="6">
-          <NavLink to="/profile">
+          <NavLink to="/datn-admin/profile">
             <span
               className="icon"
               style={{

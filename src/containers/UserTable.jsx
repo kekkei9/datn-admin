@@ -1,4 +1,4 @@
-import { Card, Table, Tag, Button, Popconfirm, Modal } from "antd";
+import { Card, Table, Tag, Button, Popconfirm, Modal, Pagination } from "antd";
 import { deactivateUser, deleteUser } from "../services/backend/UserService";
 import useSWR, { mutate } from "swr";
 import { useState } from "react";
@@ -84,9 +84,14 @@ const userColumns = [
   },
 ];
 
+const PAGE_SIZE = 10;
+
 const UserTable = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  const { data: usersResponse } = useSWR("/users");
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data: usersResponse } = useSWR(
+    `/users?page=${currentPage}&pageSize=${PAGE_SIZE}`
+  );
 
   return (
     <>
@@ -108,7 +113,7 @@ const UserTable = () => {
         className="criclebox tablespace mb-24"
         title="Users Table"
       >
-        <div className="table-responsive">
+        <div className="table-responsive flex flex-col">
           <Table
             columns={userColumns}
             dataSource={usersResponse}
@@ -120,7 +125,15 @@ const UserTable = () => {
                 }, // click row
               };
             }}
+            pagination={false}
           />
+          <div className="self-end my-5">
+            <Pagination
+              onChange={setCurrentPage}
+              pageSize={PAGE_SIZE}
+              total={30}
+            />
+          </div>
         </div>
       </Card>
     </>

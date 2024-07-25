@@ -48,9 +48,9 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      navigate("/sign-in");
+      navigate("/datn-admin/sign-in");
     } else {
-      navigate("/tables");
+      navigate("/datn-admin/tables");
     }
   }, [userInfo, navigate]);
 

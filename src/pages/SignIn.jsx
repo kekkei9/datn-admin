@@ -94,12 +94,6 @@ const SignIn = () => {
                     SIGN IN
                   </Button>
                 </Form.Item>
-                <p className="font-semibold text-muted">
-                  {"Don't have an account? "}
-                  <Link to="/sign-up" className="text-dark font-bold">
-                    Sign Up
-                  </Link>
-                </p>
               </Form>
             </Col>
             <Col

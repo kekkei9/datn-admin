@@ -17,13 +17,13 @@ const reportsColumns = [
   {
     title: "REPORTED BY",
     key: "reportedBy",
-    render: (e) => e.createdBy.firstName,
+    render: (e) => e.createdBy?.firstName,
     align: "center",
   },
   {
     title: "REPORTED TO",
     key: "reportedTo",
-    render: (e) => e.belongTo.firstName,
+    render: (e) => e.belongTo?.firstName,
     align: "center",
   },
 ];

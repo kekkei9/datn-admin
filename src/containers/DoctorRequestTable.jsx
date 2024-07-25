@@ -16,7 +16,7 @@ const doctorRequestColumns = [
     key: "requestedBy",
     render: (e) => (
       <div>
-        {e.requestUser.lastName} {e.requestUser.firstName}
+        {e.requestUser.lastName} {e.requestUser?.firstName}
       </div>
     ),
   },

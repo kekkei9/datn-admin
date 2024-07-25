@@ -23,14 +23,17 @@ function App() {
       <div className="App">
         <AuthProvider>
           <Routes>
-            <Route path="/sign-up" exact element={<SignUp />} />
-            <Route path="/sign-in" exact element={<SignIn />} />
+            <Route path="/datn-admin/sign-up" exact element={<SignUp />} />
+            <Route path="/datn-admin/sign-in" exact element={<SignIn />} />
             <Route element={<Main />}>
-              <Route exact path="/dashboard" element={<Home />} />
-              <Route exact path="/tables" element={<Tables />} />
-              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/datn-admin/dashboard" element={<Home />} />
+              <Route exact path="/datn-admin/tables" element={<Tables />} />
+              <Route exact path="/datn-admin/profile" element={<Profile />} />
             </Route>
-            <Route path="*" element={<Navigate replace to="/dashboard" />} />
+            <Route
+              path="*"
+              element={<Navigate replace to="/datn-admin/dashboard" />}
+            />
           </Routes>
         </AuthProvider>
       </div>
