@@ -32,7 +32,7 @@ const doctorRequestColumns = [
       <div>
         {e.specialties.map((specialty) => (
           <Tag key={specialty} color="">
-            {doctorSpecialties.find((spec) => spec.id === specialty).label}
+            {doctorSpecialties.find((spec) => spec.id === specialty)?.label}
           </Tag>
         ))}
       </div>
